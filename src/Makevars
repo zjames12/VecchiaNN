@@ -1,3 +1,4 @@
+USER = zj37
 #PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS)
 PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
 PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS) -L /usr/local/cuda-11.2/targets/x86_64-linux/lib -Wl,-rpath, /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudart.so
@@ -14,10 +15,10 @@ CXX = /usr/bin/g++
 
 #########################################
 
-R_INC = "/home/zj37/.conda/envs/r_env/lib/R/include"
-RCPP_ARMA_INC = "/home/zj37/.conda/envs/r_env/lib/R/library/RcppArmadillo/include"
-RCPP_INC = "/home/zj37/.conda/envs/r_env/lib/R/library/Rcpp/include"
-BH_INC =  "/home/zj37/.conda/envs/r_env/lib/R/library/BH/include"
+R_INC = "/home/$(USER)/.conda/envs/r_env/lib/R/include"
+RCPP_ARMA_INC = "/home/$(USER)/.conda/envs/r_env/lib/R/library/RcppArmadillo/include"
+RCPP_INC = "/home/$(USER)/.conda/envs/r_env/lib/R/library/Rcpp/include"
+BH_INC =  "/home/$(USER)/.conda/envs/r_env/lib/R/library/BH/include"
 NVCC = $(CUDA_HOME)/bin/nvcc
 CUDA_INC = $(CUDA_HOME)/targets/x86_64-linux/lib
 
@@ -45,4 +46,3 @@ VecchiaNN.so : $(OBJECTS)
 
 nearest_neighbor_functions.o : nearest_neighbor_functions.cu
 	$(NVCC) $(NVCC_FLAGS) -I$(CUDA_INC) $< -c -v -Xcompiler -fpic -I$(RCPP_INC) -I$(RCPP_ARMA_INC) -I$(BH_INC)
-
