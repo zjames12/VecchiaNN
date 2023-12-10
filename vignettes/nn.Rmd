@@ -1,0 +1,38 @@
+---
+title: "nn"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{nn}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The VecchiaNN package contains a single function for solving the ordered nearest neighbors problem. First load the package.
+
+```{r setup}
+library(VecchiaNN)
+```
+
+
+Next, we create data. We will use a 30 by 30 grid of points.
+
+```{r data}
+n1 = 30
+n2 = 30
+locs <- as.matrix( expand.grid( (1:n1), (1:n2) ) )
+```
+
+We now use the nearest neighbors function.
+
+```{r nn}
+m = 10
+NNarray <- VecchiaNN::nearest_neighbors(locs, m, precision = "single")
+NNarray
+```
