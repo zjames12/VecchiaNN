@@ -22,3 +22,21 @@ netid@g2-login-01:~$ R CMD INSTALL VecchiaNN_1.0.tar.gz
 ```
 
 If you are reviewing this package for stat computing please contact me if you need help.
+
+### Usage
+
+Here is an example script that will generate a lattice data set and calculate the ordered nearest neighbors matrix
+
+```R
+library(VecchiaNN)
+
+# Create the data
+n1 = 30
+n2 = 30
+locs <- as.matrix( expand.grid( (1:n1), (1:n2) ) )
+
+# Calculate the nearest neighbors
+m = 10
+NNarray <- VecchiaNN::nearest_neighbors(locs, m, precision = "single")
+NNarray
+```
